@@ -54,7 +54,7 @@ project = 'Bio2BEL HMDD'
 copyright = '2018, Mehdi Ali, Dejan Dukic, and Charles Tapley Hoyt'
 author = 'Mehdi Ali, Dejan Dukic, and Charles Tapley Hoyt'
 
-release = '0.0.1'
+release = '0.0.2-dev'
 
 parsed_version = re.match(
     '(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+(?P<build>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?',
