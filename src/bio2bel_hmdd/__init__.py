@@ -48,7 +48,7 @@ by line.
 
 from .manager import Manager
 
-__version__ = '0.0.1-dev'
+__version__ = '0.0.1'
 
 __title__ = 'bio2bel_hmdd'
 __description__ = "A package for converting the Human microRNA Disease Database (HMDD) to BEL."
