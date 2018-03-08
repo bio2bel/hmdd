@@ -4,10 +4,11 @@
 import logging
 
 from bio2bel.utils import get_connection
+from pybel import BELGraph
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from tqdm import tqdm
-from pybel import BELGraph
+
 from .constants import MODULE_NAME
 from .models import Disease, MiRNA, Association, Base
 from .parser import get_hmdd_df
