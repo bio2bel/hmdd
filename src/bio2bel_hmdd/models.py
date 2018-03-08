@@ -3,10 +3,10 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from .constants import MODULE_NAME
 
-from pybel.dsl import mirna as mirna_dsl, pathology as pathology_dsl
 from pybel.constants import ASSOCIATION
+from pybel.dsl import mirna as mirna_dsl, pathology as pathology_dsl
+from .constants import MODULE_NAME
 
 MIRNA_TABLE_NAME = '{}_mirna'.format(MODULE_NAME)
 DISEASE_TABLE_NAME = '{}_disease'.format(MODULE_NAME)
@@ -64,3 +64,6 @@ class Association(Base):
             citation=str(self.pubmed),
             evidence=str(self.description),
         )
+
+    def __repr__(self):
+        return '{} and {} from {}'.format(self.mirna, self.disease, self.pubmed)
