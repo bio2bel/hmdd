@@ -13,6 +13,7 @@ INSTALL_REQUIRES = [
     'click',
     'sqlalchemy',
     'bio2bel',
+    'pandas',
 ]
 EXTRAS_REQUIRE = {
     'web': ['flask', 'flask_admin'],
