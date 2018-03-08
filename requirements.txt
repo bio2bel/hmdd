@@ -3,3 +3,5 @@ click
 bio2bel
 pybel
 pandas
+flask[web]
+flask_admin[web]
