@@ -34,16 +34,16 @@ Setup
 >>> from bio2bel_hmdd import Manager
 >>> manager = Manager()
 
-2. Create the tables in the database
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>> manager.create_all()
-
-3. Populate the database
+2. Populate the database
 ~~~~~~~~~~~~~~~~~~~~~~~~
-This step will take sometime since the hmdd XML data needs to be downloaded, parsed, and fed into the database line
+This step will take sometime since the HMDD data needs to be downloaded, parsed, and fed into the database line
 by line.
 
 >>> manager.populate()
+
+3. Get all associations to iterate and do magic
+
+>>> associations = manager.get_associations()
 """
 
 from .manager import Manager
