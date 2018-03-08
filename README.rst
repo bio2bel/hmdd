@@ -1,5 +1,5 @@
-Bio2BEL HMDD
-============
+Bio2BEL HMDD |docs|
+===================
 Converts the Human microRNA Disease Database to BEL
 
 Citation
@@ -14,3 +14,7 @@ Links
 -----
 - Database: http://www.cuilab.cn/hmdd
 - Data: http://www.cuilab.cn/files/images/hmdd2/alldata.txt
+
+.. |docs| image:: http://readthedocs.org/projects/bio2bel-hmdd/badge/?version=latest
+    :target: http://bio2bel.readthedocs.io/projects/hmdd/en/latest/?badge=latest
+    :alt: Documentation Status
