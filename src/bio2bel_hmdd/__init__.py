@@ -54,8 +54,8 @@ __title__ = 'bio2bel_hmdd'
 __description__ = "A package for converting the Human microRNA Disease Database (HMDD) to BEL."
 __url__ = 'https://github.com/bio2bel/hmdd'
 
-__author__ = 'Mehdi Ali, Dejan Dukin and Charles Tapley Hoyt'
+__author__ = 'Mehdi Ali, Dejan Dukic, and Charles Tapley Hoyt'
 __email__ = 'charles.hoyt@scai.fraunhofer.de'
 
 __license__ = 'MIT License'
-__copyright__ = 'Copyright (c) 2018 Mehdi Ali, Dejan Dukin and Charles Tapley Hoyt'
+__copyright__ = 'Copyright (c) 2018 Mehdi Ali, Dejan Dukic, and Charles Tapley Hoyt'

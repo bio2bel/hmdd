@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 import logging
 
 from bio2bel.utils import get_connection
