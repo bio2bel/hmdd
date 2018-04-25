@@ -116,6 +116,13 @@ class Manager(AbstractManager):
         """
         return self._count_model(Association)
 
+    def summarize(self):
+        return dict(
+            mirnas=self.count_mirnas(),
+            diseases=self.count_diseases(),
+            mirna_disease_associations=self.count_associations(),
+        )
+
     def populate(self, url=None):
         """Populates the database
 
