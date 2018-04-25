@@ -1,6 +1,3 @@
-
-
-
 # -*- coding: utf-8 -*-
 
 """Bio2BEL HMDD is a package which allows the user to work with the Human microRNA Disease Database (HMDD).
@@ -43,7 +40,7 @@ by line.
 
 3. Get all associations to iterate and do magic
 
->>> associations = manager.get_associations()
+>>> associations = manager.list_associations()
 """
 
 from .manager import Manager

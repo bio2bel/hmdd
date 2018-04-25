@@ -1,7 +1,7 @@
+pybel>=0.11.1
+bio2bel>=0.0.9
 sqlalchemy
 click
-bio2bel
-pybel
 pandas
 tqdm
 flask[web]
