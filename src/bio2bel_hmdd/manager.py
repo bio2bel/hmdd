@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import logging
+"""Manager for Bio2BEL HMDD."""
 
+import logging
 from tqdm import tqdm
 
 from bio2bel import AbstractManager
@@ -30,34 +31,28 @@ class Manager(AbstractManager):
     def _base(self):
         return Base
 
-    def is_populated(self):
-        """Check if the database is already populated.
-
-        :rtype: bool
-        """
+    def is_populated(self) -> bool:
+        """Check if the database is already populated."""
         return 0 < self.count_associations()
 
-    def get_mirna_by_name(self, name):
+    def get_mirna_by_name(self, name: str) -> Optional[MiRNA]:
         """Gets an miRNA from the database if it exists
 
-        :param str name: A mirBase name
-        :rtype: Optional[MiRNA]
+        :param name: A mirBase name
         """
         return self.session.query(MiRNA).filter(MiRNA.name == name).one_or_none()
 
-    def get_disease_by_name(self, name):
+    def get_disease_by_name(self, name: str) -> Optional[Disease]:
         """Gets a Disease from the database if it exists
 
-        :param str name: A MeSH disease name
-        :rtype: Optional[Disease]
+        :param name: A MeSH disease name
         """
         return self.session.query(Disease).filter(Disease.name == name).one_or_none()
 
-    def get_or_create_mirna(self, name):
+    def get_or_create_mirna(self, name: str) -> MiRNA:
         """Gets an miRNA from the database or creates it if it does not exist
 
-        :param str name: A mirBase name
-        :rtype: MiRNA
+        :param name: A mirBase name
         """
         mirna = self.name_mirna.get(name)
         if mirna is not None:
@@ -73,11 +68,10 @@ class Manager(AbstractManager):
 
         return mirna
 
-    def get_or_create_disease(self, name):
-        """Gets a Disease from the database or creates it if it does not exist
+    def get_or_create_disease(self, name: str) -> Disease:
+        """Get a Disease from the database or creates it if it does not exist
 
-        :param str name: A MeSH disease name
-        :rtype: Disease
+        :param name: A MeSH disease name
         """
         name = name.strip().lower()
 
@@ -95,39 +89,28 @@ class Manager(AbstractManager):
 
         return disease
 
-    def count_mirnas(self):
-        """Counts the number of miRNAs in the database
-
-        :rtype: int
-        """
+    def count_mirnas(self) -> int:
+        """Count the number of miRNAs in the database."""
         return self._count_model(MiRNA)
 
-    def count_diseases(self):
-        """Counts the number of diseases in the database
-
-        :rtype: int
-        """
+    def count_diseases(self) -> int:
+        """Count the number of diseases in the database."""
         return self._count_model(Disease)
 
-    def count_associations(self):
-        """Counts the number of miRNA-disease associations in the database
-
-        :rtype: int
-        """
+    def count_associations(self) -> int:
+        """Count the number of miRNA-disease associations in the database."""
         return self._count_model(Association)
 
-    def summarize(self):
+    def summarize(self) -> Mappint[str, int]:
+        """Summarize the database."""
         return dict(
             mirnas=self.count_mirnas(),
             diseases=self.count_diseases(),
             mirna_disease_associations=self.count_associations(),
         )
 
-    def populate(self, url=None):
-        """Populates the database
-
-        :param Optional[str] url: A custom data source URL
-        """
+    def populate(self, url: Optional[str] = None):
+        """Populate the database."""
         df = get_hmdd_df(url=url)
 
         log.info('building models')
@@ -147,18 +130,12 @@ class Manager(AbstractManager):
         log.info('inserting models')
         self.session.commit()
 
-    def list_associations(self):
-        """List all associations.
-
-        :rtype: list[Association]
-        """
+    def list_associations(self) -> List[Association]:
+        """List all associations."""
         return self._list_model(Association)
 
-    def to_bel_graph(self):
-        """Builds a BEL graph containing all of the miRNA-disease associations in the database
-
-        :rtype: BELGraph
-        """
+    def to_bel_graph(self) -> BELGraph:
+        """Build a BEL graph containing all of the miRNA-disease associations in the database."""
         graph = BELGraph()
 
         for association in self.list_associations():

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Setup.py for Bio2BEL HMDD."""
+
 import codecs
 import os
 import re
@@ -9,15 +11,23 @@ import setuptools
 PACKAGES = setuptools.find_packages(where='src')
 META_PATH = os.path.join('src', 'bio2bel_hmdd', '__init__.py')
 INSTALL_REQUIRES = [
-    'pybel>=0.11.1',
-    'bio2bel>=0.0.9',
+    'pybel>=0.12.0,<0.13.0',
+    'bio2bel>=0.2.0,<0.3.0',
     'click',
     'sqlalchemy',
     'pandas',
     'tqdm'
 ]
 EXTRAS_REQUIRE = {
-    'web': ['flask', 'flask_admin'],
+    'web': [
+        'flask',
+        'flask_admin'
+    ],
+    'docs': [
+        'sphinx',
+        'sphinx-rtd-theme',
+        'sphinx-click',
+    ]
 }
 ENTRY_POINTS = {
     'bio2bel': [
@@ -41,7 +51,7 @@ META_FILE = read(META_PATH)
 
 
 def find_meta(meta):
-    """Extract __*meta*__ from META_FILE"""
+    """Extract __*meta*__ from META_FILE."""
     meta_match = re.search(
         r'^__{meta}__ = ["\']([^"\']*)["\']'.format(meta=meta),
         META_FILE, re.M
@@ -75,4 +85,5 @@ if __name__ == '__main__':
         install_requires=INSTALL_REQUIRES,
         extras_require=EXTRAS_REQUIRE,
         entry_points=ENTRY_POINTS,
+        zip_safe=False,
     )
