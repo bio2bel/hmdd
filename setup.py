@@ -16,12 +16,14 @@ INSTALL_REQUIRES = [
     'click',
     'sqlalchemy',
     'pandas',
-    'tqdm'
+    'tqdm',
+    'bio2bel_mirbase',
+    'bio2bel_mesh',
 ]
 EXTRAS_REQUIRE = {
     'web': [
         'flask',
-        'flask_admin'
+        'flask_admin',
     ],
     'docs': [
         'sphinx',
@@ -34,7 +36,7 @@ ENTRY_POINTS = {
         'hmdd = bio2bel_hmdd',
     ],
     'console_scripts': [
-        'bio2bel_hmdd = bio2bel_hmdd.cli:main'
+        'bio2bel_hmdd = bio2bel_hmdd.cli:main',
     ]
 }
 

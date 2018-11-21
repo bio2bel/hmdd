@@ -43,6 +43,7 @@ by line.
 >>> associations = manager.list_associations()
 """
 
+from .constants import get_version
 from .manager import Manager
 
 __version__ = '0.0.3-dev'

@@ -3,9 +3,15 @@
 """Manager for Bio2BEL HMDD."""
 
 import logging
+from typing import List, Mapping, Optional
+
 from tqdm import tqdm
 
+import bio2bel_mesh
+import bio2bel_mirbase
 from bio2bel import AbstractManager
+from bio2bel.manager.bel_manager import BELManagerMixin
+from bio2bel.manager.flask_manager import FlaskMixin
 from pybel import BELGraph
 from .constants import MODULE_NAME
 from .models import Association, Base, Disease, MiRNA
@@ -16,10 +22,11 @@ __all__ = ['Manager']
 log = logging.getLogger(__name__)
 
 
-class Manager(AbstractManager):
+class Manager(AbstractManager, BELManagerMixin, FlaskMixin):
     """Bio2BEL Manager for HMDD."""
 
     module_name = MODULE_NAME
+    flask_admin_models = [MiRNA, Disease, Association]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -101,7 +108,7 @@ class Manager(AbstractManager):
         """Count the number of miRNA-disease associations in the database."""
         return self._count_model(Association)
 
-    def summarize(self) -> Mappint[str, int]:
+    def summarize(self) -> Mapping[str, int]:
         """Summarize the database."""
         return dict(
             mirnas=self.count_mirnas(),
@@ -134,7 +141,7 @@ class Manager(AbstractManager):
         """List all associations."""
         return self._list_model(Association)
 
-    def to_bel_graph(self) -> BELGraph:
+    def to_bel(self) -> BELGraph:
         """Build a BEL graph containing all of the miRNA-disease associations in the database."""
         graph = BELGraph()
 
